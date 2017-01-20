@@ -1,0 +1,10 @@
+/Users/Alexis/Documents/XMLParser/XMLParser/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/Alexis/Documents/XMLParser/XMLParser/bin/Debug/XMLParser.exe.mdb
+/Users/Alexis/Documents/XMLParser/XMLParser/bin/Debug/XMLParser.exe
+/Users/Alexis/Documents/XMLParser/XMLParser/obj/x86/Debug/XMLParser.exe
+/Users/Alexis/Documents/XMLParser/XMLParser/obj/x86/Debug/XMLParser.exe.mdb
+/Users/Alexis/Documents/Projets/XMLParser/XMLParser/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/Alexis/Documents/Projets/XMLParser/XMLParser/bin/Debug/XMLParser.exe.mdb
+/Users/Alexis/Documents/Projets/XMLParser/XMLParser/bin/Debug/XMLParser.exe
+/Users/Alexis/Documents/Projets/XMLParser/XMLParser/obj/x86/Debug/XMLParser.exe
+/Users/Alexis/Documents/Projets/XMLParser/XMLParser/obj/x86/Debug/XMLParser.exe.mdb
