@@ -31,26 +31,53 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="NVorbis">
+      <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\NVorbis.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK">
+      <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\OpenTK.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XMLReader.cs" />
-    <Compile Include="AntSimulator\AntGame.cs" />
-    <Compile Include="AntSimulator\Nest.cs" />
     <Compile Include="CommonSimuator\ConfigMob.cs" />
     <Compile Include="CommonSimuator\Game.cs" />
     <Compile Include="CommonSimuator\ItemWithPosition.cs" />
     <Compile Include="CommonSimuator\Map.cs" />
-    <Compile Include="AntSimulator\Food.cs" />
-    <Compile Include="AntSimulator\Ant.cs" />
+    <Compile Include="CommonSimuator\Pathfind\Graph.cs" />
+    <Compile Include="CommonSimuator\Pathfind\Node.cs" />
+    <Compile Include="CommonSimuator\Core\Simulation.cs" />
+    <Compile Include="CommonSimuator\Core\Simulator.cs" />
+    <Compile Include="CommonSimuator\Core\TickCounter.cs" />
+    <Compile Include="CommonSimuator\Core\AI\AI.cs" />
+    <Compile Include="CommonSimuator\Core\AI\Command.cs" />
+    <Compile Include="AntSimulator\AI\AntAI.cs" />
+    <Compile Include="AntSimulator\AI\MoveTo.cs" />
+    <Compile Include="AntSimulator\Config\Ant.cs" />
+    <Compile Include="AntSimulator\Config\AntGame.cs" />
+    <Compile Include="AntSimulator\Config\Food.cs" />
+    <Compile Include="AntSimulator\Config\Nest.cs" />
+    <Compile Include="AntSimulator\AntSimulation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AntSimulator\" />
     <Folder Include="CommonSimuator\" />
+    <Folder Include="CommonSimuator\Pathfind\" />
+    <Folder Include="CommonSimuator\Core\" />
+    <Folder Include="CommonSimuator\Core\AI\" />
+    <Folder Include="AntSimulator\AI\" />
+    <Folder Include="AntSimulator\Config\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AntSimulator\AntGame.xml" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Content Include="AntSimulator\AntGame.xml" />
+  </ItemGroup>
 </Project>
