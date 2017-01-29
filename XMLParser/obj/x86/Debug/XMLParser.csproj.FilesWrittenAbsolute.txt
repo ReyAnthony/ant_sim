@@ -17,3 +17,11 @@
 /Users/anthonyrey/Desktop/simulator_xmlreader/XMLParser/bin/Debug/XMLParser.exe.mdb
 /Users/anthonyrey/Desktop/simulator_xmlreader/XMLParser/bin/Debug/XMLParser.exe
 /Users/anthonyrey/Desktop/simulator_xmlreader/XMLParser/bin/Debug/NVorbis.dll
+/Users/anthonyrey/Desktop/simulator_xmlreader/XMLParser/obj/x86/Debug/XMLParser.AntSimulator.AntGame.xml
+/Users/anthonyrey/Desktop/simulator_xmlreader/XMLParser/obj/x86/Debug/XMLParser.AntGame.xml
+/Users/anthonyrey/Desktop/simulator_xmlreader/XMLParser/bin/Debug/AntGame.xml
+/Users/anthonyrey/Desktop/simulator_xmlreader/XMLParser/obj/x86/Debug/F2J2A.AntGame.xml
+/Users/anthonyrey/Desktop/simulator_xmlreader/XMLParser/obj/x86/Debug/F2J2A.AntGameConfig.xml
+/Users/anthonyrey/Desktop/simulator_xmlreader/XMLParser/bin/Debug/AntGameConfig.xml
+/Users/anthonyrey/Desktop/simulator_xmlreader/XMLParser/bin/Debug/Content/dirt.png
+/Users/anthonyrey/Desktop/simulator_xmlreader/XMLParser/bin/Debug/Content/nest.png

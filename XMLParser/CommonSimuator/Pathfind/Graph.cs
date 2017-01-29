@@ -3,58 +3,60 @@ using System.Collections.Generic;
 
 namespace F2J2A.Pathfind
 {
-	class Graph
+    public abstract class Graph
 	{
 
-		public Graph(int width, int height){
-
-			Node[,] nodes = new Node[width,height];
-
-			for (int w = 0; w < width; w++) {
-				for (int h = 0; h < height; h++) {
-					var node = new Node (w, h);
-					nodes [w,h] = node;
-					Console.WriteLine ("Creating a node : " + "X : " + w + "Y : " + h);
-				}
-			}
-
-			for (int w = 0; w < width; w++) {
-				for (int h = 0; h < height; h++) {
-					
-					var node = new Node (w, h);
-					var vertices = new Dictionary<Node, int> ();
-
-					if (w > 0) {
-						vertices.Add(nodes[w - 1,h], 1);
-					}
-
-					if (w < width - 1) {
-						vertices.Add (nodes [w + 1, h], 1);
-					}
-
-					if (h > 0) {
-						vertices.Add (nodes [w, h - 1], 1);
-					}
-
-					if (h < height - 1) {
-						vertices.Add (nodes [w, h + 1], 1);
-					}
-						
-					addVertex (node , vertices);
-					Console.WriteLine ("Added vertice for  : " + w + " : " + h);
-					foreach(Node n in vertices.Keys){
-						Console.WriteLine (" vert : " + n.Abs + " : " + n.Ord);
-					}
-				
-
-				}
-			}
-
-
-
-		}
-
+		public Node[,] nodes { get; set; }
 		readonly Dictionary<Node, Dictionary<Node, int>> _vertices = new Dictionary<Node, Dictionary<Node, int>>();
+
+	    protected void populateNodes(int width, int height)
+	    {
+	        nodes = new Node[width,height];
+
+	        for (int w = 0; w < width; w++) {
+	            for (int h = 0; h < height; h++)
+	            {
+	                var node = getNodeForPosition(w, h);
+	                nodes [w,h] = node;
+	                Console.WriteLine ("Creating a node : " + "X : " + w + "Y : " + h);
+	            }
+	        }
+
+	        for (int w = 0; w < width; w++) {
+	            for (int h = 0; h < height; h++) {
+
+	                var node = nodes[w, h];
+	                var vertices = new Dictionary<Node, int> ();
+
+	                if (w > 0) {
+	                    vertices.Add(nodes[w - 1,h], 1);
+	                }
+
+	                if (w < width - 1) {
+	                    vertices.Add (nodes [w + 1, h], 1);
+	                }
+
+	                if (h > 0) {
+	                    vertices.Add (nodes [w, h - 1], 1);
+	                }
+
+	                if (h < height - 1) {
+	                    vertices.Add (nodes [w, h + 1], 1);
+	                }
+
+	                addVertex (node , vertices);
+	                Console.WriteLine ("Added vertice for  : " + w + " : " + h);
+	                foreach(Node n in vertices.Keys){
+	                    Console.WriteLine (" vert : " + n.Abs + " : " + n.Ord);
+	                }
+
+
+	            }
+	        }
+
+	    }
+
+	    protected abstract Node getNodeForPosition(int x, int y);
 
 		private void addVertex(Node node, Dictionary<Node, int> edges) => _vertices[node] = edges;
 

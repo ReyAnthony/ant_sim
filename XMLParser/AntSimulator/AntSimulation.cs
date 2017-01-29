@@ -1,65 +1,62 @@
 ﻿using System;
-using F2J2A.Core;
-using F2J2A.Pathfind;
-using XMLParser;
+using System.Collections.Generic;
 using System.IO;
+using F2J2A.Pathfind;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using XMLParser;
 
 namespace F2J2A.Core
 {
 	public class AntSimulation : Simulation
 	{
-		AntGame antGame;
+		AntGameConfig antGameConfig;
 
 		AI ai;
 		Graph graph;
+		GraphDrawer graphDrawer;
 
-		public AntSimulation ()
-		{
-			OnStart ();
-		}
+	    public AntSimulation()
+	    {
+	        //load files and stuff
+	        ai = new AntAI ();
+
+	        string file = "AntGameConfig.xml";
+	        string path = Path.Combine(Environment.CurrentDirectory, @"", file);
+
+	        XMLReader XmlReader = new XMLReader();
+	        antGameConfig = XmlReader.ReadXmlFileWith(path, antGameConfig);
+
+	        Graph graph = new AntGraph (antGameConfig, antGameConfig.Map.Width, antGameConfig.Map.Height);
+	        graphDrawer = new GraphDrawer (graph);
+	    }
 
 		#region Simulation implementation
-		public void OnStart ()
-		{
-			//load files and stuff
-
-			ai = new AntAI ();
-
-			string file = "AntGame.xml";
-			string path = Path.Combine(Environment.CurrentDirectory, @"xml", file);
-
-			XMLReader XmlReader = new XMLReader();
-			antGame = XmlReader.ReadXmlFileWith(path, antGame);
-
-			Graph graph = new Graph (antGame.Map.Width, antGame.Map.Height);
-
-		}
-
-		public void OnEnd ()
-		{
-			//do something
-		}
-
 		public void NextTick ()
 		{
 			//All the logic is here
-			Console.WriteLine("I should be doing stuff");
-
 			var action = ai.getNextAction ();
 			if (action != null)
 				action.Execute ();
 		}
 
-		public void Draw ()
-		{
-			//Draw all stuff 
-		}
-
-		public int TimeBeetwenTicksInMs()
+	    public int TimeBeetwenTicksInMs()
 		{
 			return 1000;
 		}
-		#endregion
+
+	    public int DrawOrder { get; }
+	    public bool Visible { get; }
+	    public event EventHandler<EventArgs> DrawOrderChanged;
+	    public event EventHandler<EventArgs> VisibleChanged;
+
+	    public void Draw (GameTime gameTime)
+	    {
+	        graphDrawer.Draw (gameTime);
+	    }
+	    #endregion
+
 
 	}
 }

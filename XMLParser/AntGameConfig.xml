@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<AntGameConfig>
+	<Map Width="20" Height="15"></Map>
+	<Nests>
+		<Nest posx="4" posy="5" MaxStorage="5"></Nest>
+		<Nest posx="2" posy="3" MaxStorage="8"></Nest>
+	</Nests>
+	<Food Quantity="5" MaxQuantity="10" SpawnRate="3"></Food>
+	<Ant Quantity="5" Health="30" SpawnRate="10" MaxQuantity="30"></Ant>
+</AntGameConfig>

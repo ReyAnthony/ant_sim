@@ -1,11 +1,9 @@
-﻿<Properties StartupConfiguration="{F5812631-4878-44D9-ADB4-8992B52F66A2}|Default" StartupItem="XMLParser/XMLParser.csproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="XMLParser/CommonSimuator/Core/TickCounter.cs">
+﻿<Properties StartupConfiguration="{F5812631-4878-44D9-ADB4-8992B52F66A2}|Default" StartupItem="XMLParser/XMLParser.csproj" RefactoringSettings.EnableRefactorings="True">
+  <MonoDevelop.Ide.Workbench ActiveDocument="XMLParser/CommonSimuator/Pathfind/Node.cs">
     <Files>
-      <File FileName="XMLParser/CommonSimuator/Pathfind/Graph.cs" Line="1" Column="1" />
-      <File FileName="XMLParser/CommonSimuator/Pathfind/Node.cs" Line="1" Column="1" />
-      <File FileName="XMLParser/CommonSimuator/Core/Simulation.cs" Line="1" Column="1" />
-      <File FileName="XMLParser/CommonSimuator/Core/Simulator.cs" Line="1" Column="1" />
-      <File FileName="XMLParser/CommonSimuator/Core/TickCounter.cs" Line="2" Column="26" />
+      <File FileName="XMLParser/AntSimulator/AntSimulation.cs" Line="1" Column="1" />
+      <File FileName="XMLParser/AntSimulator/Pathfind/AntGraph.cs" Line="13" Column="3" />
+      <File FileName="XMLParser/CommonSimuator/Pathfind/Node.cs" Line="17" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />

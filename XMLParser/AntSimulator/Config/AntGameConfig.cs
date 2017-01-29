@@ -5,8 +5,8 @@ using System.Xml.Serialization;
 namespace XMLParser
 {
 	[Serializable()]
-	[System.Xml.Serialization.XmlRoot("AntGame")]
-	public class AntGame: Game
+	[System.Xml.Serialization.XmlRoot("AntGameConfig")]
+	public class AntGameConfig: Game
 	{
 		//[XmlElement("Map")]
 		//public Map Map
@@ -38,7 +38,7 @@ namespace XMLParser
 		}
 
 
-		public AntGame()
+		public AntGameConfig()
 		{
 		}
 	}

@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
 
 namespace F2J2A.Pathfind
 {
-	class Node
+    public interface Node : IDrawable
 	{
-		public int Abs { get; set;}
-		public int Ord { get; set;}
-
-		public Node(int abs1,int ord1)
-		{
-			Abs = abs1;
-			Ord = ord1;
-		}
+		int Abs { get; set;}
+		int Ord { get; set;}
 	}
 }
 

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{F5812631-4878-44D9-ADB4-8992B52F66A2}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>XMLParser</RootNamespace>
+    <RootNamespace>F2J2A</RootNamespace>
     <AssemblyName>XMLParser</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -42,14 +42,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AntSimulator\Pathfind\DirtNode.cs" />
+    <Compile Include="AntSimulator\Pathfind\NestNode.cs" />
+    <Compile Include="AntSimulator\Pathfind\NoStuffNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XMLReader.cs" />
-    <Compile Include="CommonSimuator\ConfigMob.cs" />
-    <Compile Include="CommonSimuator\Game.cs" />
-    <Compile Include="CommonSimuator\ItemWithPosition.cs" />
-    <Compile Include="CommonSimuator\Map.cs" />
-    <Compile Include="CommonSimuator\Pathfind\Graph.cs" />
     <Compile Include="CommonSimuator\Pathfind\Node.cs" />
     <Compile Include="CommonSimuator\Core\Simulation.cs" />
     <Compile Include="CommonSimuator\Core\Simulator.cs" />
@@ -59,10 +56,18 @@
     <Compile Include="AntSimulator\AI\AntAI.cs" />
     <Compile Include="AntSimulator\AI\MoveTo.cs" />
     <Compile Include="AntSimulator\Config\Ant.cs" />
-    <Compile Include="AntSimulator\Config\AntGame.cs" />
+    <Compile Include="AntSimulator\Config\AntGameConfig.cs" />
     <Compile Include="AntSimulator\Config\Food.cs" />
     <Compile Include="AntSimulator\Config\Nest.cs" />
     <Compile Include="AntSimulator\AntSimulation.cs" />
+    <Compile Include="CommonSimuator\XML\XMLReader.cs" />
+    <Compile Include="CommonSimuator\XML\ConfigMob.cs" />
+    <Compile Include="CommonSimuator\XML\Game.cs" />
+    <Compile Include="CommonSimuator\XML\ItemWithPosition.cs" />
+    <Compile Include="CommonSimuator\XML\Map.cs" />
+    <Compile Include="AntSimulator\Pathfind\AntGraph.cs" />
+    <Compile Include="CommonSimuator\Pathfind\Graph.cs" />
+    <Compile Include="CommonSimuator\Pathfind\GraphDrawer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AntSimulator\" />
@@ -72,12 +77,28 @@
     <Folder Include="CommonSimuator\Core\AI\" />
     <Folder Include="AntSimulator\AI\" />
     <Folder Include="AntSimulator\Config\" />
+    <Folder Include="CommonSimuator\XML\" />
+    <Folder Include="AntSimulator\Pathfind\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Content Include="AntSimulator\AntGame.xml" />
+    <EmbeddedResource Include="AntGameConfig.xml">
+      <DeployService-Deploy>True</DeployService-Deploy>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\dirt.png">
+      <Link>Content/dirt.png</Link>
+    </Content>
+    <Content Include="Content\dirt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\nest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>
