@@ -1,33 +1,25 @@
-﻿using System;
-using F2J2A.Core;
+﻿using F2J2A.CommonSimulator.Core;
+using F2J2A.CommonSimulator.Pathfind;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
-namespace F2J2A.Pathfind
+namespace F2J2A.AntSimulator.Pathfind
 {
     public class DirtNode : Node
     {
-        private Texture2D sprite;
-
-	    public DirtNode(int Abs, int Ord)
+	    public DirtNode(int Abs, int Ord, int cost) : base(Abs, Ord, cost)
 	    {
-	        sprite = Simulator.Instance.Textures["dirt"];
-
-	        this.Abs = Abs;
-	        this.Ord = Ord;
+	        Cost = cost;
 	    }
 
-        public void Draw(GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
-            Simulator.Instance.SpriteBatch.Draw(sprite, new Vector2(Abs * 32, Ord * 32));
-        }
+            if(Cost > 1)
+                Texture2D = Simulator.Instance.Textures["dirt"];
+            else
+                Texture2D = Simulator.Instance.Textures["background"];
 
-        public int DrawOrder { get; }
-	    public bool Visible { get; }
-	    public event EventHandler<EventArgs> DrawOrderChanged;
-	    public event EventHandler<EventArgs> VisibleChanged;
-	    public int Abs { get; set; }
-	    public int Ord { get; set; }
+            Simulator.Instance.SpriteBatch.Draw(Texture2D, new Vector2(X * 32, Y * 32));
+        }
 	}
 }
 

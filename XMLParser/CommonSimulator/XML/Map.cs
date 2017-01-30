@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace XMLParser
+namespace F2J2A.CommonSimulator.XML
 {
 	[Serializable()]
 	public class Map

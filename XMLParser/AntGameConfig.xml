@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <AntGameConfig>
-	<Map Width="20" Height="15"></Map>
+	<Map Width="25" Height="20"></Map>
 	<Nests>
-		<Nest posx="4" posy="5" MaxStorage="5"></Nest>
-		<Nest posx="2" posy="3" MaxStorage="8"></Nest>
+		<Nest posx="4" posy="8" MaxStorage="5"></Nest>
+		<Nest posx="2" posy="12" MaxStorage="8"></Nest>
+		<Nest posx="7" posy="10" MaxStorage="8"></Nest>
+		<Nest posx="15" posy="6" MaxStorage="8"></Nest>
 	</Nests>
-	<Food Quantity="5" MaxQuantity="10" SpawnRate="3"></Food>
-	<Ant Quantity="5" Health="30" SpawnRate="10" MaxQuantity="30"></Ant>
+	<Food MaxQuantity="10" SpawnRate="3"></Food>
+	<Ant  Health="30" SpawnRate="10" MaxQuantity="10"></Ant>
 </AntGameConfig>

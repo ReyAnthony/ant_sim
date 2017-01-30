@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace XMLParser
+namespace F2J2A.AntSimulator.Config
 {
 	[Serializable()]
 	public class Food
 	{
-		[XmlAttribute("Quantity")]
-		public int Quantity
-		{
-			get;
-			set;
-		}
 
 		[XmlAttribute("MaxQuantity")]
 		public int MaxQuantity

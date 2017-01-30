@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using F2J2A.CommonSimulator.XML;
 
-namespace XMLParser
+namespace F2J2A.AntSimulator.Config
 {
 	[Serializable()]
 	[System.Xml.Serialization.XmlRoot("AntGameConfig")]
-	public class AntGameConfig: Game
+	public class AntGameConfig: GameConfig
 	{
 		//[XmlElement("Map")]
 		//public Map Map

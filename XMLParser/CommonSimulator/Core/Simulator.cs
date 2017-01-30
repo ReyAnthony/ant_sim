@@ -1,40 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
+using F2J2A.AntSimulator;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace F2J2A.Core
+namespace F2J2A.CommonSimulator.Core
 {
 	public class Simulator : Game
 	{
 
-	    private static Simulator simulatorInstance;
+	    private static Simulator _simulatorInstance;
 
 	    public static Simulator Instance
 	    {
 	        get
 	        {
-	            if(simulatorInstance == null)
+	            //should never be null upon access
+	            if(_simulatorInstance == null)
 	                throw new ApplicationException();
 
-	            return simulatorInstance;
+	            return _simulatorInstance;
 	        }
 	    }
 
 		public SpriteBatch SpriteBatch { get; private set; }
 	    public Dictionary<string, Texture2D> Textures;
 
-	    GraphicsDeviceManager graphics;
-	    TickCounter tickCounter;
-		Simulation currentSimulation;
+	    private GraphicsDeviceManager _graphics;
+	    private TickCounter _tickCounter;
+		private Simulation _currentSimulation;
 
 		public Simulator ()
 		{
-		    simulatorInstance = this;
-			graphics = new GraphicsDeviceManager (this);
+		    _simulatorInstance = this;
+			_graphics = new GraphicsDeviceManager (this);
 			Content.RootDirectory = "Content";
-			tickCounter = new TickCounter ();
+			_tickCounter = new TickCounter ();
 		    Textures = new Dictionary<string, Texture2D>();
 		}
 
@@ -49,10 +51,13 @@ namespace F2J2A.Core
 			//à partir de la liste simulation et on met le selecteur de simulation dans currentSimulation
 
 		    Textures.Add("dirt", Content.Load<Texture2D>("dirt.png"));
+		    Textures.Add("background", Content.Load<Texture2D>("background.png"));
+		    Textures.Add("food", Content.Load<Texture2D>("food.png"));
 		    Textures.Add("nest", Content.Load<Texture2D>("nest.png"));
+		    Textures.Add("ant", Content.Load<Texture2D>("ant.png"));
+		    Textures.Add("antwithfood", Content.Load<Texture2D>("antwithfood.png"));
 
-		    currentSimulation = new AntSimulation();
-
+		    _currentSimulation = new AntSimulation();
 		}
 
 		protected override void Update (GameTime gameTime)
@@ -61,19 +66,18 @@ namespace F2J2A.Core
 			if (Keyboard.GetState ().IsKeyDown (Keys.Escape))
 				Exit ();
 
-			Console.WriteLine (gameTime.TotalGameTime);
-			if(tickCounter.IsNextTick(currentSimulation.TimeBeetwenTicksInMs(), gameTime))
-				currentSimulation.NextTick ();
+			if(_tickCounter.IsNextTick(_currentSimulation.TimeBeetwenTicksInMs, gameTime))
+				_currentSimulation.NextTick ();
 
 			base.Update (gameTime);
 		}
 
 		protected override void Draw (GameTime gameTime)
 		{
-			graphics.GraphicsDevice.Clear (Color.CornflowerBlue);
+			_graphics.GraphicsDevice.Clear (Color.CornflowerBlue);
 
 		    SpriteBatch.Begin();
-		    currentSimulation.Draw(gameTime);
+		    _currentSimulation.Draw(gameTime);
 		    SpriteBatch.End();
 
 			base.Draw (gameTime);

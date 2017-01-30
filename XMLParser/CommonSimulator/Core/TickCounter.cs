@@ -1,7 +1,6 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
-namespace F2J2A.Core
+namespace F2J2A.CommonSimulator.Core
 {
 	public class TickCounter
 	{

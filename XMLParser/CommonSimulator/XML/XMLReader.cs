@@ -2,7 +2,7 @@
 using System.IO;
 using System.Xml.Serialization;
 
-namespace XMLParser
+namespace F2J2A.CommonSimulator.XML
 {
 	public class XMLReader
 	{

@@ -1,16 +1,16 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-namespace F2J2A.Pathfind
+namespace F2J2A.CommonSimulator.Pathfind
 {
 	public class GraphDrawer : IDrawable
 	{
 
-		private Graph graph;
+		private Graph _graph;
 
 		public GraphDrawer (Graph graph)
 		{
-			this.graph = graph;
+			this._graph = graph;
 		}
 
 		#region IDrawable implementation
@@ -21,7 +21,7 @@ namespace F2J2A.Pathfind
 
 		public void Draw (GameTime gameTime)
 		{
-			foreach (Node n in graph.nodes) {
+			foreach (var n in _graph.Nodes) {
 				n.Draw (gameTime);
 			}
 		}

@@ -1,59 +1,95 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using F2J2A.Pathfind;
+using F2J2A.AntSimulator.AI;
+using F2J2A.AntSimulator.Config;
+using F2J2A.AntSimulator.Pathfind;
+using F2J2A.AntSimulator.Unit;
+using F2J2A.CommonSimulator.Core;
+using F2J2A.CommonSimulator.Core.AI;
+using F2J2A.CommonSimulator.Pathfind;
+using F2J2A.CommonSimulator.XML;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using XMLParser;
 
-namespace F2J2A.Core
+namespace F2J2A.AntSimulator
 {
 	public class AntSimulation : Simulation
 	{
-		AntGameConfig antGameConfig;
+		AntGameConfig _antGameConfig;
 
-		AI ai;
-		Graph graph;
-		GraphDrawer graphDrawer;
+		CommonSimulator.Core.AI.AI _antAi;
+	    CommonSimulator.Core.AI.AI _nestsAi;
+	    CommonSimulator.Core.AI.AI _foodAi;
+
+	    List<AntUnit> _ants;
+	    List<NestUnit> _nests;
+	    List<FoodUnit> _food;
+
+	    List<ICommand> _commands;
+
+	    GraphDrawer _graphDrawer;
 
 	    public AntSimulation()
 	    {
-	        //load files and stuff
-	        ai = new AntAI ();
+	        _ants = new List<AntUnit>();
+	        _nests = new List<NestUnit>();
+	        _food = new List<FoodUnit>();
+	        _commands = new List<ICommand>();
 
-	        string file = "AntGameConfig.xml";
-	        string path = Path.Combine(Environment.CurrentDirectory, @"", file);
+	        const string file = "AntGameConfig.xml";
+	        var path = Path.Combine(Environment.CurrentDirectory, @"", file);
 
-	        XMLReader XmlReader = new XMLReader();
-	        antGameConfig = XmlReader.ReadXmlFileWith(path, antGameConfig);
+	        var xmlReader = new XMLReader();
+	        _antGameConfig = xmlReader.ReadXmlFileWith(path, _antGameConfig);
 
-	        Graph graph = new AntGraph (antGameConfig, antGameConfig.Map.Width, antGameConfig.Map.Height);
-	        graphDrawer = new GraphDrawer (graph);
+	        _antGameConfig.Nests.ForEach(n => _nests.Add(new NestUnit(n.PosX, n.PosY)));
+
+	        var graph = new AntGraph (_antGameConfig, _antGameConfig.Map.Width, _antGameConfig.Map.Height);
+	        _graphDrawer = new GraphDrawer (graph);
+
+	        _antAi = new AntAI (_antGameConfig, graph, _ants, _food, _nests);
+	        _nestsAi = new NestAI(_antGameConfig, graph, _nests, _ants);
+	        _foodAi = new FoodAI(_antGameConfig, graph, _food);
 	    }
 
 		#region Simulation implementation
 		public void NextTick ()
 		{
-			//All the logic is here
-			var action = ai.getNextAction ();
-			if (action != null)
-				action.Execute ();
+		    var action = _nestsAi.GetNextAction ();
+		    if (action != null)
+		    {
+		        _commands.Add(action);
+		        action.Execute ();
+		    }
+
+		    action = _foodAi.GetNextAction ();
+		    if (action != null)
+		    {
+		        _commands.Add(action);
+		        action.Execute ();
+		    }
+
+		    action = _antAi.GetNextAction ();
+		    if (action != null)
+		    {
+		        _commands.Add(action);
+		        action.Execute ();
+		    }
 		}
 
-	    public int TimeBeetwenTicksInMs()
-		{
-			return 1000;
-		}
+	    public int TimeBeetwenTicksInMs => 100;
 
 	    public int DrawOrder { get; }
 	    public bool Visible { get; }
 	    public event EventHandler<EventArgs> DrawOrderChanged;
 	    public event EventHandler<EventArgs> VisibleChanged;
 
-	    public void Draw (GameTime gameTime)
+	    public void Draw(GameTime gameTime)
 	    {
-	        graphDrawer.Draw (gameTime);
+	        _graphDrawer.Draw (gameTime);
+	        _nests.ForEach(n => n.Draw(gameTime));
+	        _food.ForEach(f => f.Draw(gameTime));
+	        _ants.ForEach(a => a.Draw(gameTime));
 	    }
 	    #endregion
 

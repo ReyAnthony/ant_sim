@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Serialization;
-using F2J2A.Core;
+using F2J2A.CommonSimulator.Core;
 
 namespace XMLParser
 {

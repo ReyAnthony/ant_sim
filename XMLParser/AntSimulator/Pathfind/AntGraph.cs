@@ -1,26 +1,24 @@
-﻿using XMLParser;
+﻿using F2J2A.AntSimulator.Config;
+using F2J2A.CommonSimulator.Pathfind;
 
-namespace F2J2A.Pathfind
+namespace F2J2A.AntSimulator.Pathfind
 {
-	class AntGraph : Graph
+    public class AntGraph : Graph
 	{
-	    private AntGameConfig config;
 
-	    public AntGraph(AntGameConfig config, int width, int height)
+	    public AntGraph(AntGameConfig config, int width, int height) : base(width, height, config){}
+
+	    protected override Node GetNodeForPosition(int x, int y)
 	    {
-	        this.config = config;
-	        populateNodes(width, height);
-	    }
 
-	    protected override Node getNodeForPosition(int x, int y)
-	    {
-	        if(y == 0)
-	            return new NoStuffNode(x, y);
+	        if (y == 0 || ((AntGameConfig) Config).Nests.FindAll(n => (n.PosX == x && n.PosY == y)).Count > 0)
+	        {
+	            //TODO also do the neighbors of the nest
+	            //TODO should cost 1 because they will never go the othr way as it costs "infinitely" more
+	            return new DirtNode(x, y, 1);
+	        }
 
-	        if (config.Nests.FindAll(n => (n.PosX == x && n.PosY == y)).Count > 0)
-	            return new NestNode(x, y);
-
-	        return new DirtNode(x, y);
+	        return new DirtNode(x, y, 2);
 	    }
 	}
 
