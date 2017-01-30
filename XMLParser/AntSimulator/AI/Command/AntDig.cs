@@ -22,7 +22,7 @@ namespace F2J2A.AntSimulator.AI.Command
         {
             Console.WriteLine("Diggin at : " + _digged.X + " , " + _digged.Y);
             _diggedOldCost = _digged.Cost;
-            _digged.Cost = 1;
+            _digged.Cost = Node.DEFAULT_NODE_COST;
         }
 
         public void Undo()

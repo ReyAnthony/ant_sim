@@ -7,7 +7,9 @@ namespace F2J2A.CommonSimulator.Pathfind
 {
     public abstract class Node : IDrawable, IComparable
 	{
-		public int X { get; set;}
+	    public static readonly int DEFAULT_NODE_COST = 1;
+
+	    public int X { get; set;}
 		public int Y { get; set;}
 	    public int Score { get; set;}
 	    public int Cost { get; set;}

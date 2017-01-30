@@ -53,7 +53,7 @@ namespace F2J2A.AntSimulator.AI
 	            }
 
 	            var next = path.First();
-	            if (next.Cost > 1)
+	            if (next.Cost > Node.DEFAULT_NODE_COST)
 	            {
 	                compositeCommand.Add(new AntDig(next));
 	                continue;
@@ -81,7 +81,7 @@ namespace F2J2A.AntSimulator.AI
 	            }
 
 	            var next = path.First();
-	            if (next.Cost > 1)
+	            if (next.Cost > Node.DEFAULT_NODE_COST)
 	            {
 	                compositeCommand.Add(new AntDig(next));
 	                continue;

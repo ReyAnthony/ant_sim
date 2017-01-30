@@ -5,7 +5,6 @@ namespace F2J2A.AntSimulator.Pathfind
 {
     public class AntGraph : Graph
 	{
-
 	    public AntGraph(AntGameConfig config, int width, int height) : base(width, height, config){}
 
 	    protected override Node GetNodeForPosition(int x, int y)
@@ -15,10 +14,10 @@ namespace F2J2A.AntSimulator.Pathfind
 	        {
 	            //TODO also do the neighbors of the nest
 	            //TODO should cost 1 because they will never go the othr way as it costs "infinitely" more
-	            return new DirtNode(x, y, 1);
+	            return new DirtNode(x, y, Node.DEFAULT_NODE_COST);
 	        }
 
-	        return new DirtNode(x, y, 2);
+	        return new DirtNode(x, y, DirtNode.FULL_NODE_COST);
 	    }
 	}
 
