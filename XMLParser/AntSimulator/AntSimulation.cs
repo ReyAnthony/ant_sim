@@ -18,21 +18,21 @@ namespace F2J2A.AntSimulator
 	{
 	    private readonly AntGameConfig _antGameConfig;
 
-	    private CommonSimulator.Core.AI.AI _antAi;
-	    private CommonSimulator.Core.AI.AI _nestsAi;
-	    private CommonSimulator.Core.AI.AI _foodAi;
-	    private CommonSimulator.Core.AI.AI _queenAI;
+	    private readonly CommonSimulator.Core.AI.AI _antAi;
+	    private readonly CommonSimulator.Core.AI.AI _nestsAi;
+	    private readonly CommonSimulator.Core.AI.AI _foodAi;
+	    private readonly CommonSimulator.Core.AI.AI _queenAI;
 
 	    private bool _paused;
 
-	    private List<AntUnit> _ants;
-	    private List<QueenUnit> _queens;
-	    private List<NestUnit> _nests;
-	    private List<FoodUnit> _food;
+	    private readonly List<AntUnit> _ants;
+	    private readonly List<QueenUnit> _queens;
+	    private readonly List<NestUnit> _nests;
+	    private readonly List<FoodUnit> _food;
 
-	    private List<ICommand> _commands;
+	    private readonly List<ICommand> _commands;
 
-	    private GraphDrawer _graphDrawer;
+	    private readonly GraphDrawer _graphDrawer;
 
 	    public AntSimulation()
 	    {
