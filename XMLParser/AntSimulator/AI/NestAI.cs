@@ -5,25 +5,22 @@ using F2J2A.AntSimulator.Config;
 using F2J2A.AntSimulator.Unit;
 using F2J2A.CommonSimulator.Core.AI;
 using F2J2A.CommonSimulator.Core.AI.Commands;
-using F2J2A.CommonSimulator.Pathfind;
 
 namespace F2J2A.AntSimulator.AI
 {
     public class NestAI : CommonSimulator.Core.AI.AI
     {
-        private AntGameConfig _antGameConfig;
-        private Graph _graph;
+        private readonly AntGameConfig _antGameConfig;
 
         private readonly List<NestUnit> _nestUnits;
         private readonly List<AntUnit> _antUnits;
         private readonly List<QueenUnit> _queenUnits;
 
-        private int _numberOfTurnsSinceLastSpawn = 0;
+        private int _numberOfTurnsSinceLastSpawn;
 
-        public NestAI(AntGameConfig config, Graph graph, List<NestUnit> nests, List<AntUnit> ants, List<QueenUnit> queens)
+        public NestAI(AntGameConfig config, List<NestUnit> nests, List<AntUnit> ants, List<QueenUnit> queens)
         {
             _antGameConfig = config;
-            _graph = graph;
             _nestUnits = nests;
             _antUnits = ants;
             _queenUnits = queens;
@@ -46,12 +43,11 @@ namespace F2J2A.AntSimulator.AI
 
             foreach(var nest in _nestUnits)
             {
-                if (nest.ShouldItCreateAQueen() )
-                {
-                    compositeCommand.Add(new AntResetNestFoodCount(nest));
-                    //spawn a new queen
-                    compositeCommand.Add(new AntSpawnQueen(_antGameConfig, _graph, _nestUnits, nest, _queenUnits));
-                }
+                if (!nest.ShouldItCreateAQueen()) continue;
+
+                //spawn a new queen
+                compositeCommand.Add(new AntResetNestFoodCount(nest));
+                compositeCommand.Add(new AntSpawnQueen(_antGameConfig, _nestUnits, nest, _queenUnits));
             }
 
             _numberOfTurnsSinceLastSpawn++;

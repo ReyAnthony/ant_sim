@@ -9,7 +9,7 @@ namespace F2J2A.AntSimulator.Unit
     public class NestUnit : Node
     {
         public int FoodInsideNest { get; set; }
-        private int _foodBeforeNextQueen;
+        private readonly int _foodBeforeNextQueen;
 
         public NestUnit(int x, int y, int foodBeforeNextQueen) : base(x, y, 0)
         {

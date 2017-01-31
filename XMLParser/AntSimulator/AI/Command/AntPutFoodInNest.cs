@@ -6,10 +6,9 @@ namespace F2J2A.AntSimulator.AI.Command
 {
     public class AntPutFoodInNest : ICommand
     {
-        private AntUnit _unit;
-        private NestUnit _nest;
-
-        private FoodUnit _oldFood;
+        private readonly AntUnit _unit;
+        private readonly NestUnit _nest;
+        private readonly FoodUnit _oldFood;
 
         public AntPutFoodInNest(AntUnit unit, NestUnit nest)
         {

@@ -23,7 +23,7 @@ namespace F2J2A.AntSimulator
 	    private CommonSimulator.Core.AI.AI _foodAi;
 	    private CommonSimulator.Core.AI.AI _queenAI;
 
-	    private bool paused;
+	    private bool _paused;
 
 	    private List<AntUnit> _ants;
 	    private List<QueenUnit> _queens;
@@ -54,9 +54,9 @@ namespace F2J2A.AntSimulator
 	        _graphDrawer = new GraphDrawer (graph);
 
 	        _antAi = new AntAI (_antGameConfig, graph, _ants, _food, _nests);
-	        _nestsAi = new NestAI(_antGameConfig, graph, _nests, _ants, _queens);
-	        _foodAi = new FoodAI(_antGameConfig, graph, _food);
-	        _queenAI = new QueenAI(_antGameConfig, graph, _queens, _nests);
+	        _nestsAi = new NestAI(_antGameConfig, _nests, _ants, _queens);
+	        _foodAi = new FoodAI(_antGameConfig, _food);
+	        _queenAI = new QueenAI(graph, _queens, _nests);
 
 	        TimeBeetwenTicksInMs = _antGameConfig.Speed;
 	    }
@@ -64,7 +64,7 @@ namespace F2J2A.AntSimulator
 		#region Simulation implementation
 		public void NextTick ()
 		{
-		    if(paused)
+		    if(_paused)
 		        return;
 
 		    var action = _nestsAi.GetNextAction ();
@@ -99,7 +99,7 @@ namespace F2J2A.AntSimulator
 	    public int TimeBeetwenTicksInMs { get; set; }
 	    public void TogglePause()
 	    {
-	        paused = !paused;
+	        _paused = !_paused;
 	    }
 
 	    public void UndoLastAction()

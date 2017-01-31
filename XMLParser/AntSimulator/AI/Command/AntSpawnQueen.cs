@@ -4,7 +4,6 @@ using System.Linq;
 using F2J2A.AntSimulator.Config;
 using F2J2A.AntSimulator.Unit;
 using F2J2A.CommonSimulator.Core.AI;
-using F2J2A.CommonSimulator.Pathfind;
 using Microsoft.Xna.Framework;
 
 namespace F2J2A.AntSimulator.AI.Command
@@ -12,7 +11,6 @@ namespace F2J2A.AntSimulator.AI.Command
     public class AntSpawnQueen : ICommand
     {
         private readonly AntGameConfig _config;
-        private readonly Graph _graph;
         private readonly List<NestUnit> _nests;
         private readonly NestUnit _nest;
         private readonly List<QueenUnit> _queenUnits;
@@ -20,10 +18,9 @@ namespace F2J2A.AntSimulator.AI.Command
         private QueenUnit _newQueen;
 
 
-        public AntSpawnQueen(AntGameConfig config, Graph graph, List<NestUnit> nests, NestUnit nest, List<QueenUnit> queenUnits)
+        public AntSpawnQueen(AntGameConfig config, List<NestUnit> nests, NestUnit nest, List<QueenUnit> queenUnits)
         {
             _config = config;
-            _graph = graph;
             _nests = nests;
             _nest = nest;
             _queenUnits = queenUnits;

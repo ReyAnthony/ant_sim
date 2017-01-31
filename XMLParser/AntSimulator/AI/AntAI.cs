@@ -31,7 +31,7 @@ namespace F2J2A.AntSimulator.AI
 
 	    private void IaForAntLookingForFood(CompositeCommand compositeCommand)
 	    {
-	        foreach (AntUnit unit in _ants.FindAll(a => a.TransportedFood == null))
+	        foreach (var unit in _ants.FindAll(a => a.TransportedFood == null))
 	        {
 	            if (_food.Count == 0)
 	            {
@@ -65,7 +65,7 @@ namespace F2J2A.AntSimulator.AI
 	    private void IaForAntRetrievingFood(CompositeCommand compositeCommand)
 	    {
 
-	        foreach (AntUnit unit in _ants.FindAll(a => a.TransportedFood != null))
+	        foreach (var unit in _ants.FindAll(a => a.TransportedFood != null))
 	        {
 	            var goal = unit.BaseNest;
 
@@ -92,7 +92,7 @@ namespace F2J2A.AntSimulator.AI
 
 	    private void DecrementLifeOfAntsWithoutFood(CompositeCommand compositeCommand)
 	    {
-	        foreach (AntUnit unit in _ants.FindAll(a => a.TransportedFood == null))
+	        foreach (var unit in _ants.FindAll(a => a.TransportedFood == null))
 	        {
 	            if (unit.Health > 0)
                     compositeCommand.Add(new AntDecrementLife(unit));
@@ -106,7 +106,7 @@ namespace F2J2A.AntSimulator.AI
 
 		public ICommand GetNextAction ()
 		{
-		    CompositeCommand compositeCommand = new CompositeCommand();
+		    var compositeCommand = new CompositeCommand();
 
 		    IaForAntLookingForFood(compositeCommand);
 		    IaForAntRetrievingFood(compositeCommand);

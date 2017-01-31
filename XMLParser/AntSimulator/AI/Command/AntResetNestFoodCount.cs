@@ -7,7 +7,7 @@ namespace F2J2A.AntSimulator.AI.Command
     public class AntResetNestFoodCount : ICommand
     {
         private readonly NestUnit _nest;
-        private int _oldValue;
+        private readonly int _oldValue;
 
         public AntResetNestFoodCount(NestUnit nest)
         {

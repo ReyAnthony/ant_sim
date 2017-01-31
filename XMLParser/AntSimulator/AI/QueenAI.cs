@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using F2J2A.AntSimulator.AI.Command;
-using F2J2A.AntSimulator.Config;
 using F2J2A.AntSimulator.Pathfind;
 using F2J2A.AntSimulator.Unit;
 using F2J2A.CommonSimulator.Core.AI;
@@ -12,14 +11,12 @@ namespace F2J2A.AntSimulator.AI
 {
     public class QueenAI : CommonSimulator.Core.AI.AI
     {
-        private readonly AntGameConfig _antGameConfig;
         private readonly AntGraph _graph;
         private readonly List<QueenUnit> _queens;
         private readonly List<NestUnit> _nests;
 
-        public QueenAI(AntGameConfig antGameConfig, AntGraph graph, List<QueenUnit> queens, List<NestUnit> nests)
+        public QueenAI(AntGraph graph, List<QueenUnit> queens, List<NestUnit> nests)
         {
-            _antGameConfig = antGameConfig;
             _graph = graph;
             _queens = queens;
             _nests = nests;
@@ -28,7 +25,7 @@ namespace F2J2A.AntSimulator.AI
         public ICommand GetNextAction()
         {
             var compositeCommand = new CompositeCommand();
-            foreach (QueenUnit unit in _queens)
+            foreach (var unit in _queens)
             {
                 var goal = unit.Destination;
 

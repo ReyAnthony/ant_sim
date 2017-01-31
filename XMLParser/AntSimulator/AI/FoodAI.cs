@@ -5,22 +5,19 @@ using F2J2A.AntSimulator.Config;
 using F2J2A.AntSimulator.Unit;
 using F2J2A.CommonSimulator.Core.AI;
 using F2J2A.CommonSimulator.Core.AI.Commands;
-using F2J2A.CommonSimulator.Pathfind;
 
 namespace F2J2A.AntSimulator.AI
 {
     public class FoodAI : CommonSimulator.Core.AI.AI
     {
-        private AntGameConfig _antGameConfig;
-        private Graph _graph;
-        private List<FoodUnit> _foodUnits;
+        private readonly AntGameConfig _antGameConfig;
+        private readonly List<FoodUnit> _foodUnits;
 
-        private int _numberOfTurnsSinceLastSpawn = 0;
+        private int _numberOfTurnsSinceLastSpawn;
 
-        public FoodAI(AntGameConfig config, Graph graph, List<FoodUnit> food)
+        public FoodAI(AntGameConfig config, List<FoodUnit> food)
         {
             _antGameConfig = config;
-            _graph = graph;
             _foodUnits = food;
         }
 
@@ -40,10 +37,7 @@ namespace F2J2A.AntSimulator.AI
                     select f;
 
                 //this means there is already food here
-                if (food.Any())
-                    return null;
-
-                return new Spawner<FoodUnit>(randomXPosition, 0, _foodUnits);
+                return food.Any() ? null : new Spawner<FoodUnit>(randomXPosition, 0, _foodUnits);
             }
 
             _numberOfTurnsSinceLastSpawn++;
