@@ -1,10 +1,11 @@
 ﻿using System;
+using F2J2A.CommonSimulator.Core.Unit;
 using F2J2A.CommonSimulator.Pathfind;
 using Microsoft.Xna.Framework;
 
 namespace F2J2A.CommonSimulator.Core.AI.Commands
 {
-	public class MoveTo<T> : ICommand where T : Node
+	public class MoveTo<T> : ICommand where T : GameUnit
 	{
 	    private readonly T _unitToMove;
 	    private Vector2 _position;

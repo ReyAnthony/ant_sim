@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Xml.Serialization;
 using F2J2A.CommonSimulator.XML;
 

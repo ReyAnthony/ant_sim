@@ -41,8 +41,8 @@ namespace F2J2A.AntSimulator.AI
 	            var goal = _food.First();
 
 	            var path = _graph.GetShortestPath(
-	                _graph.FindNode(unit.X, unit.Y),
-	                _graph.FindNode(goal.X, goal.Y));
+	                _graph.FindNodeFromPosition(unit.X, unit.Y),
+	                _graph.FindNodeFromPosition(goal.X, goal.Y));
 
 	            if (path.Count == 0)
 	            {
@@ -70,8 +70,8 @@ namespace F2J2A.AntSimulator.AI
 	            var goal = unit.BaseNest;
 
 	            var path = _graph.GetShortestPath(
-	                _graph.FindNode(unit.X, unit.Y),
-	                _graph.FindNode(goal.X, goal.Y));
+	                _graph.FindNodeFromPosition(unit.X, unit.Y),
+	                _graph.FindNodeFromPosition(goal.X, goal.Y));
 
 	            if (path.Count == 0)
 	            {

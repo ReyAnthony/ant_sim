@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<AntGameConfig Speed="50">
+<AntGameConfig Speed="150">
 	<Map Width="40" Height="25"></Map>
 	<Nests>
 		<Nest posx="4" posy="8" storage-max="5"></Nest>

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using F2J2A.CommonSimulator.Core.Unit;
 using F2J2A.CommonSimulator.Pathfind;
 
 namespace F2J2A.CommonSimulator.Core.AI.Commands
 {
-    public class Spawner<T> : ICommand where T : Node, new()
+    public class Spawner<T> : ICommand where T : GameUnit, new()
     {
         private readonly List<T> _units;
         private readonly T _addedUnit;

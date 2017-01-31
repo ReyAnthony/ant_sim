@@ -1,21 +1,21 @@
 ﻿using F2J2A.CommonSimulator.Core;
-using F2J2A.CommonSimulator.Pathfind;
+using F2J2A.CommonSimulator.Core.Unit;
 using Microsoft.Xna.Framework;
 
 namespace F2J2A.AntSimulator.Unit
 {
-    public class AntUnit : Node
+    public class AntUnit : GameUnit
     {
         public FoodUnit TransportedFood { get; set; }
         public NestUnit BaseNest;
         public int Health;
 
-        public AntUnit() : base(0, 0, 0)
+        public AntUnit()
         {
             Texture2D = Simulator.Instance.Textures["ant"];
         }
 
-        public AntUnit(int x, int y, NestUnit baseNest, int life) : base(x, y, 0)
+        public AntUnit(int x, int y, NestUnit baseNest, int life) : base(x, y)
         {
             Texture2D = Simulator.Instance.Textures["ant"];
             BaseNest = baseNest;

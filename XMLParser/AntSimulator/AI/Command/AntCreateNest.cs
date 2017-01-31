@@ -22,7 +22,7 @@ namespace F2J2A.AntSimulator.AI.Command
 
         public void Execute()
         {
-            _newNest = new NestUnit(_unit.X, _unit.Y, _unit.BaseNest.FoodInsideNest);
+            _newNest = new NestUnit(_unit.X, _unit.Y, _unit.BaseNest.FoodBeforeNextQueen);
             _queens.Remove(_unit);
 
             _nests.Add(_newNest);

@@ -21,7 +21,7 @@ namespace F2J2A.CommonSimulator.Pathfind
             PopulateNodes(width, height);
         }
 
-        public Node FindNode(int x, int y)
+        public Node FindNodeFromPosition(int x, int y)
         {
             return Nodes[x, y];
         }
@@ -48,19 +48,19 @@ namespace F2J2A.CommonSimulator.Pathfind
             {
                 for (var y = 0; y < height; y++)
                 {
-                    var node = FindNode(x, y);
+                    var node = FindNodeFromPosition(x, y);
 
                     if (x > 0)
-                        node.addNeighbor(FindNode(x - 1, y));
+                        node.addNeighbor(FindNodeFromPosition(x - 1, y));
 
                     if (x < width - 1)
-                        node.addNeighbor(FindNode(x + 1, y));
+                        node.addNeighbor(FindNodeFromPosition(x + 1, y));
 
                     if (y > 0)
-                        node.addNeighbor(FindNode(x, y - 1));
+                        node.addNeighbor(FindNodeFromPosition(x, y - 1));
 
                     if (y < height - 1)
-                        node.addNeighbor(FindNode(x, y + 1));
+                        node.addNeighbor(FindNodeFromPosition(x, y + 1));
                 }
             }
         }
@@ -75,7 +75,7 @@ namespace F2J2A.CommonSimulator.Pathfind
             {
                 for (var h = 0; h < _height; h++)
                 {
-                    var node = FindNode(w, h);
+                    var node = FindNodeFromPosition(w, h);
                     node.Score = MaxValue;
 
                     if (node.Equals(start))
@@ -159,7 +159,7 @@ namespace F2J2A.CommonSimulator.Pathfind
         public Node[,] Nodes { get; set; }
         readonly Dictionary<Node, Dictionary<Node, int>> _vertices = new Dictionary<Node, Dictionary<Node, int>>();
         public GameConfig Config { get; set; }
-        public Node FindNode(int x, int y) => Nodes[x, y];
+        public Node FindNodeFromPosition(int x, int y) => Nodes[x, y];
 
         protected Graph(int width, int height, GameConfig config)
         {

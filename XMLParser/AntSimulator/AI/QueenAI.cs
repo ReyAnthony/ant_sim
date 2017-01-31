@@ -30,8 +30,8 @@ namespace F2J2A.AntSimulator.AI
                 var goal = unit.Destination;
 
                 var path = _graph.GetShortestPath(
-                    _graph.FindNode(unit.X, unit.Y),
-                    _graph.FindNode((int) goal.X, (int) goal.Y));
+                    _graph.FindNodeFromPosition(unit.X, unit.Y),
+                    _graph.FindNodeFromPosition((int) goal.X, (int) goal.Y));
 
                 if (path.Count == 0)
                 {

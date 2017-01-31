@@ -1,25 +1,24 @@
-﻿using System;
-using F2J2A.CommonSimulator.Core;
-using F2J2A.CommonSimulator.Pathfind;
+﻿using F2J2A.CommonSimulator.Core;
+using F2J2A.CommonSimulator.Core.Unit;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace F2J2A.AntSimulator.Unit
 {
-    public class NestUnit : Node
+    public class NestUnit : GameUnit
     {
         public int FoodInsideNest { get; set; }
-        private readonly int _foodBeforeNextQueen;
+        public int FoodBeforeNextQueen { get; }
 
-        public NestUnit(int x, int y, int foodBeforeNextQueen) : base(x, y, 0)
+        public NestUnit(int x, int y, int foodBeforeNextQueen) : base(x, y)
         {
             Texture2D = Simulator.Instance.Textures["nest"];
-            _foodBeforeNextQueen = foodBeforeNextQueen;
+            FoodBeforeNextQueen = foodBeforeNextQueen;
         }
 
         public bool ShouldItCreateAQueen()
         {
-            return FoodInsideNest > _foodBeforeNextQueen;
+            return FoodInsideNest > FoodBeforeNextQueen;
         }
 
         public override void Draw(GameTime gameTime)

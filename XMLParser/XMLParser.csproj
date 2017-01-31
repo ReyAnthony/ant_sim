@@ -62,6 +62,7 @@
     <Compile Include="CommonSimulator\Core\AI\Commands\MoveTo.cs" />
     <Compile Include="CommonSimulator\Core\AI\Commands\CompositeCommand.cs" />
     <Compile Include="CommonSimulator\Core\AI\Commands\Spawner.cs" />
+    <Compile Include="CommonSimulator\Core\Unit\GameUnit.cs" />
     <Compile Include="CommonSimulator\Pathfind\Graph.cs" />
     <Compile Include="CommonSimulator\Pathfind\Node.cs" />
     <Compile Include="Program.cs" />

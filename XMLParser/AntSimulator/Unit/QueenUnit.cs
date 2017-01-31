@@ -1,5 +1,4 @@
-﻿using System;
-using F2J2A.CommonSimulator.Core;
+﻿using F2J2A.CommonSimulator.Core;
 using Microsoft.Xna.Framework;
 
 namespace F2J2A.AntSimulator.Unit
