@@ -68,7 +68,13 @@ namespace F2J2A.CommonSimulator.Core
 			if (Keyboard.GetState ().IsKeyDown (Keys.Escape))
 				Exit ();
 
-			if(_tickCounter.IsNextTick(_currentSimulation.TimeBeetwenTicksInMs, gameTime))
+		    if (Keyboard.GetState ().IsKeyDown (Keys.Left))
+		        _currentSimulation.UndoLastAction();
+
+		    if (Keyboard.GetState ().IsKeyDown (Keys.Space))
+		        _currentSimulation.TogglePause();
+
+		    if(_tickCounter.IsNextTick(_currentSimulation.TimeBeetwenTicksInMs, gameTime))
 				_currentSimulation.NextTick ();
 
 			base.Update (gameTime);

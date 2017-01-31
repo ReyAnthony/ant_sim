@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using F2J2A.AntSimulator.AI;
 using F2J2A.AntSimulator.Config;
 using F2J2A.AntSimulator.Pathfind;
@@ -15,22 +16,23 @@ namespace F2J2A.AntSimulator
 {
 	public class AntSimulation : Simulation
 	{
-		AntGameConfig _antGameConfig;
+	    private readonly AntGameConfig _antGameConfig;
 
-		CommonSimulator.Core.AI.AI _antAi;
-	    CommonSimulator.Core.AI.AI _nestsAi;
-	    CommonSimulator.Core.AI.AI _foodAi;
-	    CommonSimulator.Core.AI.AI _queenAI;
+	    private CommonSimulator.Core.AI.AI _antAi;
+	    private CommonSimulator.Core.AI.AI _nestsAi;
+	    private CommonSimulator.Core.AI.AI _foodAi;
+	    private CommonSimulator.Core.AI.AI _queenAI;
 
-	    List<AntUnit> _ants;
-	    List<QueenUnit> _queens;
-	    List<NestUnit> _nests;
-	    List<FoodUnit> _food;
+	    private bool paused;
 
-	    List<ICommand> _commands;
+	    private List<AntUnit> _ants;
+	    private List<QueenUnit> _queens;
+	    private List<NestUnit> _nests;
+	    private List<FoodUnit> _food;
 
-	    GraphDrawer _graphDrawer;
+	    private List<ICommand> _commands;
 
+	    private GraphDrawer _graphDrawer;
 
 	    public AntSimulation()
 	    {
@@ -62,6 +64,9 @@ namespace F2J2A.AntSimulator
 		#region Simulation implementation
 		public void NextTick ()
 		{
+		    if(paused)
+		        return;
+
 		    var action = _nestsAi.GetNextAction ();
 		    if (action != null)
 		    {
@@ -92,6 +97,21 @@ namespace F2J2A.AntSimulator
 		}
 
 	    public int TimeBeetwenTicksInMs { get; set; }
+	    public void TogglePause()
+	    {
+	        paused = !paused;
+	    }
+
+	    public void UndoLastAction()
+	    {
+	        if (_commands.Count > 0)
+	        {
+	           var lastCommand =  _commands.Last();
+	            _commands.Remove(lastCommand);
+	            lastCommand.Undo();
+	        }
+
+	    }
 
 	    public int DrawOrder { get; }
 	    public bool Visible { get; }

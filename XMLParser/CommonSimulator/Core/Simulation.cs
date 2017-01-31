@@ -6,6 +6,8 @@ namespace F2J2A.CommonSimulator.Core
 	{
 	    void NextTick();
 		int TimeBeetwenTicksInMs { get; }
+	    void TogglePause();
+	    void UndoLastAction();
 	}
 }
 
