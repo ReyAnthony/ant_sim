@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using F2J2A.AntSimulator.Unit;
 using F2J2A.CommonSimulator.Core.AI;
 
@@ -25,6 +26,7 @@ namespace F2J2A.AntSimulator.AI.Command
             _queens.Remove(_unit);
 
             _nests.Add(_newNest);
+            Console.WriteLine("Creating a nest at " + _unit.X + " : " + _unit.Y );
         }
 
         public void Undo()

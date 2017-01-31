@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using F2J2A.AntSimulator.Config;
 using F2J2A.AntSimulator.Unit;
 using F2J2A.CommonSimulator.Core.AI;
@@ -24,6 +25,7 @@ namespace F2J2A.AntSimulator.AI.Command
         {
             _addedAnt = new AntUnit(_nestUnit.X, _nestUnit.Y, _nestUnit, _antGameConfig.Ant.Health);
             _ants.Add(_addedAnt);
+            Console.WriteLine("Spawning an ant at " + _addedAnt.X + " : " + _addedAnt.Y );
         }
 
         public void Undo()

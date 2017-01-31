@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using F2J2A.AntSimulator.Unit;
 using F2J2A.CommonSimulator.Core.AI;
 
@@ -18,6 +19,7 @@ namespace F2J2A.AntSimulator.AI.Command
         public void Execute()
         {
             _ants.Remove(_unit);
+            Console.WriteLine("Killing ant at " + _unit.X + " : " + _unit.Y );
         }
 
         public void Undo()

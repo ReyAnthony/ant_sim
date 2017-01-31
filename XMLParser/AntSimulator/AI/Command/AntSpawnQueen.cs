@@ -45,6 +45,7 @@ namespace F2J2A.AntSimulator.AI.Command
 
              _newQueen = new QueenUnit(_nest.X, _nest.Y, goal);
             _queenUnits.Add(_newQueen);
+            Console.WriteLine("Spawning an queen at " + _newQueen.X + " : " + _newQueen.Y );
         }
 
         public void Undo()

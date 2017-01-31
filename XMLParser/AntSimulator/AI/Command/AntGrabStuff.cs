@@ -23,7 +23,7 @@ namespace F2J2A.AntSimulator.AI.Command
 	        _antUnit.TransportedFood = _foodUnit;
 	        _food.Remove(_foodUnit);
 
-	        Console.WriteLine("An ant has grabbed some food");
+	        Console.WriteLine("Ant grabbing food at" + _foodUnit.X + " : " + _foodUnit.Y );
 	    }
 
 	    public void Undo()

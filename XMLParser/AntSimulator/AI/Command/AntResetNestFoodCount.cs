@@ -1,4 +1,5 @@
-﻿using F2J2A.AntSimulator.Unit;
+﻿using System;
+using F2J2A.AntSimulator.Unit;
 using F2J2A.CommonSimulator.Core.AI;
 
 namespace F2J2A.AntSimulator.AI.Command
@@ -17,6 +18,7 @@ namespace F2J2A.AntSimulator.AI.Command
         public void Execute()
         {
             _nest.FoodInsideNest = 0;
+            Console.WriteLine("Reseting nest food at " + _nest.X + " : " + _nest.Y );
         }
 
         public void Undo()

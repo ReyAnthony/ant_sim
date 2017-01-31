@@ -35,7 +35,6 @@ namespace F2J2A.AntSimulator.AI
 	        {
 	            if (_food.Count == 0)
 	            {
-	                Console.WriteLine("No More food !!!!");
 	                break;
 	            }
 
