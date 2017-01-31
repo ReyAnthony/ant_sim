@@ -2,7 +2,7 @@
 
 namespace F2J2A.CommonSimulator.Core
 {
-	public interface Simulation : IDrawable
+	public interface ISimulation : IDrawable
 	{
 	    void NextTick();
 		int TimeBeetwenTicksInMs { get; }

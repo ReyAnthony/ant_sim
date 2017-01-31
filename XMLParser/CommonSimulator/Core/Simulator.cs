@@ -27,9 +27,9 @@ namespace F2J2A.CommonSimulator.Core
 		public SpriteBatch SpriteBatch { get; private set; }
 	    public Dictionary<string, Texture2D> Textures;
 
-	    private GraphicsDeviceManager _graphics;
-	    private TickCounter _tickCounter;
-		private Simulation _currentSimulation;
+	    private readonly GraphicsDeviceManager _graphics;
+	    private readonly TickCounter _tickCounter;
+		private ISimulation _currentSimulation;
 
 		public Simulator ()
 		{
@@ -44,12 +44,6 @@ namespace F2J2A.CommonSimulator.Core
 	    protected override void LoadContent ()
 		{
 			SpriteBatch = new SpriteBatch (GraphicsDevice);
-			//Ici on chargera toutes les scenes à partir du simulatorGenerator 
-			//On lui passera le spritebatch pour qu'il charge les ressources
-			//Et on mettra les simulations dans la List "simulations"
-
-			//On generera une classe selecteur de simulation pour choisir la simulation
-			//à partir de la liste simulation et on met le selecteur de simulation dans currentSimulation
 
 		    Textures.Add("dirt", Content.Load<Texture2D>("dirt.png"));
 		    Textures.Add("background", Content.Load<Texture2D>("background.png"));
@@ -65,8 +59,8 @@ namespace F2J2A.CommonSimulator.Core
 		protected override void Update (GameTime gameTime)
 		{
 
-			if (Keyboard.GetState ().IsKeyDown (Keys.Escape))
-				Exit ();
+		    if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+		        Exit();
 
 		    if (Keyboard.GetState ().IsKeyDown (Keys.Left))
 		        _currentSimulation.UndoLastAction();

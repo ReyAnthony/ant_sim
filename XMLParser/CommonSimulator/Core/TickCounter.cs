@@ -4,7 +4,7 @@ namespace F2J2A.CommonSimulator.Core
 {
 	public class TickCounter
 	{
-		float currentTimeInMs;
+		float _currentTimeInMs;
 
 		public TickCounter ()
 		{
@@ -13,9 +13,9 @@ namespace F2J2A.CommonSimulator.Core
 
 		public bool IsNextTick(float msNeededBeforeNextTick, GameTime gameTime) 
 		{
-			currentTimeInMs += gameTime.ElapsedGameTime.Milliseconds;
+			_currentTimeInMs += gameTime.ElapsedGameTime.Milliseconds;
 
-			if (currentTimeInMs >= msNeededBeforeNextTick) 
+			if (_currentTimeInMs >= msNeededBeforeNextTick)
 			{
 				ResetTicksCount ();
 				return true;
@@ -26,7 +26,7 @@ namespace F2J2A.CommonSimulator.Core
 
 		private void ResetTicksCount()
 		{
-			currentTimeInMs = 0.0f;
+			_currentTimeInMs = 0.0f;
 		}
 	}
 }

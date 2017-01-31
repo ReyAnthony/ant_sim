@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework;
 
 namespace F2J2A.AntSimulator
 {
-	public class AntSimulation : Simulation
+	public class AntSimulation : ISimulation
 	{
 	    private readonly AntGameConfig _antGameConfig;
 

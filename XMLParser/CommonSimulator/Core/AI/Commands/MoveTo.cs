@@ -6,7 +6,7 @@ namespace F2J2A.CommonSimulator.Core.AI.Commands
 {
 	public class MoveTo<T> : ICommand where T : Node
 	{
-	    private T _unitToMove;
+	    private readonly T _unitToMove;
 	    private Vector2 _position;
 	    private Vector2 _oldPosition;
 

@@ -6,9 +6,8 @@ namespace F2J2A.CommonSimulator.Core.AI.Commands
 {
     public class Spawner<T> : ICommand where T : Node, new()
     {
-        private List<T> _units;
-
-        private T _addedUnit;
+        private readonly List<T> _units;
+        private readonly T _addedUnit;
 
         public Spawner (int x, int y, List<T> units)
         {
