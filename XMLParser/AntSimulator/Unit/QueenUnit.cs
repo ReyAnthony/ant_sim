@@ -8,7 +8,7 @@ namespace F2J2A.AntSimulator.Unit
     {
         public Vector2 Destination { get; set; }
 
-        public QueenUnit(int x, int y, Vector2 destination) : base(x, y, null, Int32.MaxValue)
+        public QueenUnit(int x, int y, NestUnit baseNest, Vector2 destination) : base(x, y, baseNest, Int32.MaxValue)
         {
             Texture2D = Simulator.Instance.Textures["antqueen"];
             Destination = destination;

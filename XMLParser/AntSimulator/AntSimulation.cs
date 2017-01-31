@@ -46,7 +46,7 @@ namespace F2J2A.AntSimulator
 	        var xmlReader = new XMLReader();
 	        _antGameConfig = xmlReader.ReadXmlFileWith(path, _antGameConfig);
 
-	        _antGameConfig.Nests.ForEach(n => _nests.Add(new NestUnit(n.PosX, n.PosY)));
+	        _antGameConfig.Nests.ForEach(n => _nests.Add(new NestUnit(n.PosX, n.PosY, n.StorageMax)));
 
 	        var graph = new AntGraph (_antGameConfig, _antGameConfig.Map.Width, _antGameConfig.Map.Height);
 	        _graphDrawer = new GraphDrawer (graph);

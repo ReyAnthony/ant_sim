@@ -103,7 +103,7 @@
   <ItemGroup>
     <EmbeddedResource Include="AntGameConfig.xml">
       <DeployService-Deploy>True</DeployService-Deploy>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

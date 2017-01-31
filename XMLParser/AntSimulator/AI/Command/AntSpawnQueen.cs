@@ -43,7 +43,7 @@ namespace F2J2A.AntSimulator.AI.Command
 
             } while (_nests.FindAll(n => n.X == (int) goal.X && n.Y == (int) goal.Y).Any());
 
-             _newQueen = new QueenUnit(_nest.X, _nest.Y, goal);
+             _newQueen = new QueenUnit(_nest.X, _nest.Y, _nest, goal);
             _queenUnits.Add(_newQueen);
             Console.WriteLine("Spawning an queen at " + _newQueen.X + " : " + _newQueen.Y );
         }

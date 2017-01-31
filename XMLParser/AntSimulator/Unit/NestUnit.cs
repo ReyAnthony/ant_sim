@@ -9,10 +9,17 @@ namespace F2J2A.AntSimulator.Unit
     public class NestUnit : Node
     {
         public int FoodInsideNest { get; set; }
+        private int _foodBeforeNextQueen;
 
-        public NestUnit(int Abs, int Ord) : base(Abs, Ord, 0)
+        public NestUnit(int x, int y, int foodBeforeNextQueen) : base(x, y, 0)
         {
             Texture2D = Simulator.Instance.Textures["nest"];
+            _foodBeforeNextQueen = foodBeforeNextQueen;
+        }
+
+        public bool ShouldItCreateAQueen()
+        {
+            return FoodInsideNest > _foodBeforeNextQueen;
         }
 
         public override void Draw(GameTime gameTime)

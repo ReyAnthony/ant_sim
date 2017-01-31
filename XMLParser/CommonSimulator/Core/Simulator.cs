@@ -38,6 +38,7 @@ namespace F2J2A.CommonSimulator.Core
 			Content.RootDirectory = "Content";
 			_tickCounter = new TickCounter ();
 		    Textures = new Dictionary<string, Texture2D>();
+		    _graphics.ToggleFullScreen();
 		}
 
 	    protected override void LoadContent ()

@@ -44,13 +44,9 @@ namespace F2J2A.AntSimulator.AI
                 compositeCommand.Add(new AntSpawner(_antGameConfig, nest, _antUnits));
             }
 
-            //FIXME add xml binding
-            int NEST_MAX = 10;
-
-
             foreach(var nest in _nestUnits)
             {
-                if (nest.FoodInsideNest > NEST_MAX)
+                if (nest.ShouldItCreateAQueen() )
                 {
                     compositeCommand.Add(new AntResetNestFoodCount(nest));
                     //spawn a new queen

@@ -9,12 +9,6 @@ namespace F2J2A.AntSimulator.Config
 	[System.Xml.Serialization.XmlRoot("AntGameConfig")]
 	public class AntGameConfig: GameConfig
 	{
-		//[XmlElement("Map")]
-		//public Map Map
-		//{
-		//	get;
-		//	set;
-		//}
 
 		[XmlArray("Nests")]
 		[XmlArrayItem("Nest", typeof(Nest))]
