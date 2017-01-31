@@ -55,6 +55,8 @@ namespace F2J2A.AntSimulator
 	        _nestsAi = new NestAI(_antGameConfig, graph, _nests, _ants, _queens);
 	        _foodAi = new FoodAI(_antGameConfig, graph, _food);
 	        _queenAI = new QueenAI(_antGameConfig, graph, _queens, _nests);
+
+	        TimeBeetwenTicksInMs = _antGameConfig.Speed;
 	    }
 
 		#region Simulation implementation
@@ -89,7 +91,7 @@ namespace F2J2A.AntSimulator
 		    }
 		}
 
-	    public int TimeBeetwenTicksInMs => 100;
+	    public int TimeBeetwenTicksInMs { get; set; }
 
 	    public int DrawOrder { get; }
 	    public bool Visible { get; }

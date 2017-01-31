@@ -13,6 +13,9 @@ namespace F2J2A.CommonSimulator.XML
 			set;
 		}
 
+	    [XmlAttribute("Speed")]
+	    public int Speed { get; set; }
+
 		public GameConfig()
 		{
 		}
