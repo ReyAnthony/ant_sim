@@ -20,8 +20,10 @@ namespace F2J2A.AntSimulator
 		CommonSimulator.Core.AI.AI _antAi;
 	    CommonSimulator.Core.AI.AI _nestsAi;
 	    CommonSimulator.Core.AI.AI _foodAi;
+	    CommonSimulator.Core.AI.AI _queenAI;
 
 	    List<AntUnit> _ants;
+	    List<QueenUnit> _queens;
 	    List<NestUnit> _nests;
 	    List<FoodUnit> _food;
 
@@ -29,11 +31,13 @@ namespace F2J2A.AntSimulator
 
 	    GraphDrawer _graphDrawer;
 
+
 	    public AntSimulation()
 	    {
 	        _ants = new List<AntUnit>();
 	        _nests = new List<NestUnit>();
 	        _food = new List<FoodUnit>();
+	        _queens = new List<QueenUnit>();
 	        _commands = new List<ICommand>();
 
 	        const string file = "AntGameConfig.xml";
@@ -48,8 +52,9 @@ namespace F2J2A.AntSimulator
 	        _graphDrawer = new GraphDrawer (graph);
 
 	        _antAi = new AntAI (_antGameConfig, graph, _ants, _food, _nests);
-	        _nestsAi = new NestAI(_antGameConfig, graph, _nests, _ants);
+	        _nestsAi = new NestAI(_antGameConfig, graph, _nests, _ants, _queens);
 	        _foodAi = new FoodAI(_antGameConfig, graph, _food);
+	        _queenAI = new QueenAI(_antGameConfig, graph, _queens, _nests);
 	    }
 
 		#region Simulation implementation
@@ -75,6 +80,13 @@ namespace F2J2A.AntSimulator
 		        _commands.Add(action);
 		        action.Execute ();
 		    }
+
+		    action = _queenAI.GetNextAction ();
+		    if (action != null)
+		    {
+		        _commands.Add(action);
+		        action.Execute ();
+		    }
 		}
 
 	    public int TimeBeetwenTicksInMs => 100;
@@ -90,6 +102,7 @@ namespace F2J2A.AntSimulator
 	        _nests.ForEach(n => n.Draw(gameTime));
 	        _food.ForEach(f => f.Draw(gameTime));
 	        _ants.ForEach(a => a.Draw(gameTime));
+	        _queens.ForEach(q => q.Draw(gameTime));
 	    }
 	    #endregion
 

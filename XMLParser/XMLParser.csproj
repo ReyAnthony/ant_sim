@@ -42,16 +42,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AntSimulator\AI\Command\AntCreateNest.cs" />
+    <Compile Include="AntSimulator\AI\Command\AntDecrementLife.cs" />
     <Compile Include="AntSimulator\AI\Command\AntDig.cs" />
     <Compile Include="AntSimulator\AI\Command\AntGrabStuff.cs" />
+    <Compile Include="AntSimulator\AI\Command\AntKill.cs" />
     <Compile Include="AntSimulator\AI\Command\AntPutFoodInNest.cs" />
+    <Compile Include="AntSimulator\AI\Command\AntResetNestFoodCount.cs" />
     <Compile Include="AntSimulator\AI\Command\AntSpawner.cs" />
+    <Compile Include="AntSimulator\AI\Command\AntSpawnQueen.cs" />
     <Compile Include="AntSimulator\AI\FoodAI.cs" />
     <Compile Include="AntSimulator\AI\NestAI.cs" />
+    <Compile Include="AntSimulator\AI\QueenAI.cs" />
     <Compile Include="AntSimulator\Pathfind\DirtNode.cs" />
     <Compile Include="AntSimulator\Unit\AntUnit.cs" />
     <Compile Include="AntSimulator\Unit\FoodUnit.cs" />
     <Compile Include="AntSimulator\Unit\NestUnit.cs" />
+    <Compile Include="AntSimulator\Unit\QueenUnit.cs" />
     <Compile Include="CommonSimulator\Core\AI\Commands\MoveTo.cs" />
     <Compile Include="CommonSimulator\Core\AI\Commands\CompositeCommand.cs" />
     <Compile Include="CommonSimulator\Core\AI\Commands\Spawner.cs" />
@@ -104,6 +111,9 @@
       <Link>Content/dirt.png</Link>
     </Content>
     <Content Include="Content\ant.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\antqueen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\antwithfood.png">

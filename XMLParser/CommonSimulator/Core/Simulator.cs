@@ -56,6 +56,7 @@ namespace F2J2A.CommonSimulator.Core
 		    Textures.Add("nest", Content.Load<Texture2D>("nest.png"));
 		    Textures.Add("ant", Content.Load<Texture2D>("ant.png"));
 		    Textures.Add("antwithfood", Content.Load<Texture2D>("antwithfood.png"));
+		    Textures.Add("antqueen", Content.Load<Texture2D>("antqueen.png"));
 
 		    _currentSimulation = new AntSimulation();
 		}

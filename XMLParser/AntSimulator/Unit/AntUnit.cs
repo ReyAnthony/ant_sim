@@ -1,8 +1,6 @@
-﻿using System;
-using F2J2A.CommonSimulator.Core;
+﻿using F2J2A.CommonSimulator.Core;
 using F2J2A.CommonSimulator.Pathfind;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace F2J2A.AntSimulator.Unit
 {

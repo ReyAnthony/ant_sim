@@ -29,7 +29,7 @@ namespace F2J2A.AntSimulator.AI
 		    _nests = nests;
 		}
 
-	    private void IaForAntLookingForFood(CompositeCommand<AntUnit> compositeCommand)
+	    private void IaForAntLookingForFood(CompositeCommand compositeCommand)
 	    {
 	        foreach (AntUnit unit in _ants.FindAll(a => a.TransportedFood == null))
 	        {
@@ -63,7 +63,7 @@ namespace F2J2A.AntSimulator.AI
 	        }
 	    }
 
-	    private void IaForAntRetrievingFood(CompositeCommand<AntUnit> compositeCommand)
+	    private void IaForAntRetrievingFood(CompositeCommand compositeCommand)
 	    {
 
 	        foreach (AntUnit unit in _ants.FindAll(a => a.TransportedFood != null))
@@ -91,17 +91,31 @@ namespace F2J2A.AntSimulator.AI
 	        }
 	    }
 
+	    private void DecrementLifeOfAntsWithoutFood(CompositeCommand compositeCommand)
+	    {
+	        foreach (AntUnit unit in _ants.FindAll(a => a.TransportedFood == null))
+	        {
+	            if (unit.Health > 0)
+                    compositeCommand.Add(new AntDecrementLife(unit));
+	            else
+                    compositeCommand.Add(new AntKill(unit, _ants));
+	        }
+	    }
+
+
 	    #region AI implementation
 
 		public ICommand GetNextAction ()
 		{
-		    CompositeCommand<AntUnit> compositeCommand = new CompositeCommand<AntUnit>();
+		    CompositeCommand compositeCommand = new CompositeCommand();
 
 		    IaForAntLookingForFood(compositeCommand);
 		    IaForAntRetrievingFood(compositeCommand);
+		    DecrementLifeOfAntsWithoutFood(compositeCommand);
 
 		    return compositeCommand;
 		}
+
 	    #endregion
 	}
 }
