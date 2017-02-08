@@ -18,8 +18,9 @@ namespace F2J2A.AntSimulator.AI
 	    private readonly List<AntUnit> _ants;
 	    private readonly List<FoodUnit> _food;
 	    private readonly List<NestUnit> _nests;
+	    private readonly List<AntCorpse> _corpses;
 
-	    public AntAI (AntGameConfig config, Graph graph, List<AntUnit> ants, List<FoodUnit> food, List<NestUnit> nests)
+	    public AntAI (AntGameConfig config, Graph graph, List<AntUnit> ants, List<FoodUnit> food, List<NestUnit> nests, List<AntCorpse> antCorpses)
 		{
 		    _antGameConfig = config;
 		    _graph = graph;
@@ -27,6 +28,7 @@ namespace F2J2A.AntSimulator.AI
 		    _ants = ants;
 		    _food = food;
 		    _nests = nests;
+		    _corpses = antCorpses;
 		}
 
 	    private void IaForAntLookingForFood(CompositeCommand compositeCommand)
@@ -97,7 +99,7 @@ namespace F2J2A.AntSimulator.AI
 	            if (unit.Health > 0)
                     compositeCommand.Add(new AntDecrementLife(unit));
 	            else
-                    compositeCommand.Add(new AntKill(unit, _ants));
+                    compositeCommand.Add(new AntKill(unit, _ants, _corpses));
 	        }
 	    }
 

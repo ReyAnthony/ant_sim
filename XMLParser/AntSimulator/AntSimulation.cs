@@ -29,6 +29,7 @@ namespace F2J2A.AntSimulator
 	    private readonly List<QueenUnit> _queens;
 	    private readonly List<NestUnit> _nests;
 	    private readonly List<FoodUnit> _food;
+	    private readonly List<AntCorpse> _antCorpses;
 
 	    private readonly List<ICommand> _commands;
 
@@ -39,8 +40,10 @@ namespace F2J2A.AntSimulator
 	        _ants = new List<AntUnit>();
 	        _nests = new List<NestUnit>();
 	        _food = new List<FoodUnit>();
+	        _antCorpses = new List<AntCorpse>();
 	        _queens = new List<QueenUnit>();
 	        _commands = new List<ICommand>();
+
 
 	        const string file = "AntGameConfig.xml";
 	        var path = Path.Combine(Environment.CurrentDirectory, @"", file);
@@ -53,7 +56,7 @@ namespace F2J2A.AntSimulator
 	        var graph = new AntGraph (_antGameConfig, _antGameConfig.Map.Width, _antGameConfig.Map.Height);
 	        _graphDrawer = new GraphDrawer (graph);
 
-	        _antAi = new AntAI (_antGameConfig, graph, _ants, _food, _nests);
+	        _antAi = new AntAI (_antGameConfig, graph, _ants, _food, _nests, _antCorpses);
 	        _nestsAi = new NestAI(_antGameConfig, _nests, _ants, _queens);
 	        _foodAi = new FoodAI(_antGameConfig, _food);
 	        _queenAI = new QueenAI(graph, _queens, _nests);
@@ -122,9 +125,11 @@ namespace F2J2A.AntSimulator
 	    {
 	        _graphDrawer.Draw (gameTime);
 	        _nests.ForEach(n => n.Draw(gameTime));
+	        _antCorpses.ForEach(a => a.Draw(gameTime));
 	        _food.ForEach(f => f.Draw(gameTime));
 	        _ants.ForEach(a => a.Draw(gameTime));
 	        _queens.ForEach(q => q.Draw(gameTime));
+
 	    }
 	    #endregion
 
