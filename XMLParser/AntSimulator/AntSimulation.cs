@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using F2J2A.AntSimulator.AI;
+using F2J2A.AntSimulator.AI.Command;
 using F2J2A.AntSimulator.Config;
 using F2J2A.AntSimulator.Pathfind;
 using F2J2A.AntSimulator.Unit;
@@ -11,6 +12,7 @@ using F2J2A.CommonSimulator.Core.AI;
 using F2J2A.CommonSimulator.Pathfind;
 using F2J2A.CommonSimulator.XML;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace F2J2A.AntSimulator
 {
@@ -67,8 +69,14 @@ namespace F2J2A.AntSimulator
 		#region Simulation implementation
 		public void NextTick ()
 		{
+
 		    if(_paused)
 		        return;
+
+		    if (Keyboard.GetState().IsKeyDown(Keys.Right))
+		        TimeBeetwenTicksInMs = _antGameConfig.Speed / 4;
+		    else
+		        TimeBeetwenTicksInMs = _antGameConfig.Speed;
 
 		    var action = _nestsAi.GetNextAction ();
 		    if (action != null)
@@ -96,6 +104,14 @@ namespace F2J2A.AntSimulator
 		    {
 		        _commands.Add(action);
 		        action.Execute ();
+		    }
+
+		    if (_antCorpses.Count > 10)
+		    {
+		        var clear = new ClearCorpses(_antCorpses);
+		        _commands.Add(clear);
+		        clear.Execute();
+
 		    }
 		}
 

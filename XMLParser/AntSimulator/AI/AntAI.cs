@@ -7,6 +7,7 @@ using F2J2A.AntSimulator.Unit;
 using F2J2A.CommonSimulator.Core.AI;
 using F2J2A.CommonSimulator.Core.AI.Commands;
 using F2J2A.CommonSimulator.Pathfind;
+using Microsoft.Xna.Framework;
 
 namespace F2J2A.AntSimulator.AI
 {
@@ -19,6 +20,25 @@ namespace F2J2A.AntSimulator.AI
 	    private readonly List<FoodUnit> _food;
 	    private readonly List<NestUnit> _nests;
 	    private readonly List<AntCorpse> _corpses;
+
+	    public FoodUnit FindNearest(List<FoodUnit> food, AntUnit player)
+	    {
+	        Vector2? closest = null;
+	        var closestDistance = float.MaxValue;
+	        foreach (var f in food) {
+	            var position = new Vector2(f.X, f.Y);
+	            var distance = Vector2.DistanceSquared(position, new Vector2(player.X, player.Y));
+	            if (!closest.HasValue || distance < closestDistance) {
+	                closest = position;
+	                closestDistance = distance;
+	            }
+	        }
+
+	        if (closest.HasValue)
+	            return food.Find(f => new Vector2(f.X, f.Y) == closest);
+	        else
+	            return null;
+	    }
 
 	    public AntAI (AntGameConfig config, Graph graph, List<AntUnit> ants, List<FoodUnit> food, List<NestUnit> nests, List<AntCorpse> antCorpses)
 		{
@@ -40,7 +60,10 @@ namespace F2J2A.AntSimulator.AI
 	                break;
 	            }
 
-	            var goal = _food.First();
+	            var goal = FindNearest(_food, unit);
+
+	            if(goal == null)
+	                break;
 
 	            var path = _graph.GetShortestPath(
 	                _graph.FindNodeFromPosition(unit.X, unit.Y),
@@ -97,9 +120,13 @@ namespace F2J2A.AntSimulator.AI
 	        foreach (var unit in _ants.FindAll(a => a.TransportedFood == null))
 	        {
 	            if (unit.Health > 0)
-                    compositeCommand.Add(new AntDecrementLife(unit));
+	                compositeCommand.Add(new AntDecrementLife(unit));
 	            else
-                    compositeCommand.Add(new AntKill(unit, _ants, _corpses));
+	            {
+	                //compositeCommand.Add(new AntDropStuff(unit, _food));
+	                compositeCommand.Add(new AntKill(unit, _ants, _corpses));
+	            }
+
 	        }
 	    }
 

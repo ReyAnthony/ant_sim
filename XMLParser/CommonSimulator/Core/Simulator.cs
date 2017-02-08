@@ -31,7 +31,7 @@ namespace F2J2A.CommonSimulator.Core
 	    private readonly TickCounter _tickCounter;
 		private ISimulation _currentSimulation;
 
-		public Simulator ()
+	    public Simulator ()
 		{
 		    _simulatorInstance = this;
 			_graphics = new GraphicsDeviceManager (this);
@@ -53,8 +53,9 @@ namespace F2J2A.CommonSimulator.Core
 		    Textures.Add("antwithfood", Content.Load<Texture2D>("antwithfood.png"));
 		    Textures.Add("antqueen", Content.Load<Texture2D>("antqueen.png"));
 		    Textures.Add("antcorpse", Content.Load<Texture2D>("antcorpse"));
+		    Textures.Add("sim", Content.Load<Texture2D>("sim"));
 
-		    _currentSimulation = new AntSimulation();
+		    _currentSimulation = new EmptySimulation();
 		}
 
 		protected override void Update (GameTime gameTime)
@@ -72,6 +73,16 @@ namespace F2J2A.CommonSimulator.Core
 		    if(_tickCounter.IsNextTick(_currentSimulation.TimeBeetwenTicksInMs, gameTime))
 				_currentSimulation.NextTick ();
 
+		    if (_currentSimulation is EmptySimulation)
+		    {
+		        if (Keyboard.GetState ().IsKeyDown (Keys.Left))
+		            _currentSimulation = new AntSimulation();
+
+		        if (Keyboard.GetState ().IsKeyDown (Keys.Right))
+		            _currentSimulation = new AntSimulation();
+
+		    }
+
 			base.Update (gameTime);
 		}
 
@@ -81,6 +92,10 @@ namespace F2J2A.CommonSimulator.Core
 
 		    SpriteBatch.Begin();
 		    _currentSimulation.Draw(gameTime);
+		    if (_currentSimulation is EmptySimulation)
+		    {
+		        SpriteBatch.Draw(Textures["sim"], Vector2.Zero, Color.White);
+		    }
 		    SpriteBatch.End();
 
 			base.Draw (gameTime);
